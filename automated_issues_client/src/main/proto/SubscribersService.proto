@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+package com.hungerstation.automated_issues.grpc.services;
+
+
+message Empty {
+
+}
+
+
+message Event {
+    string name = 1;
+    string data = 2;
+}
+
+
+service SubscribersService {
+    rpc publishEvent (Event) returns (Empty);
+}

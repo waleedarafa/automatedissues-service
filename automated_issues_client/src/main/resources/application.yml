@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    com.hungerstation: DEBUG
+
+
+
+spring:
+  application:
+    name: automated_issues_client
+

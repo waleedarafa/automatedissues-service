@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+package com.hungerstation.automated_issues.grpc.services;
+option java_outer_classname = "AutomatedIssuesProtos";
+
+enum StatusEnum {
+    OPEN = 0;
+    CLOSED = 1;
+}
+
+
+message Id {
+    int64 id = 1;
+}
+
+message SearchCriteria {
+    map<string,string> criteria = 1;
+    int32 page = 2;
+    int32 perPage = 3;
+}
+
+message AutomatedIssue {
+    int32 trigger_key = 1;
+    StatusEnum status = 2;
+    string related_to_type = 3;
+    int64 related_to_id = 4;
+}
+
+message AutomatedIssues {
+    repeated AutomatedIssue automatedIssue = 1;
+}
+
+service AutomatedIssuesService {
+    rpc create (AutomatedIssue) returns (AutomatedIssue);
+    rpc fetch (Id) returns (AutomatedIssue);
+    rpc filter (SearchCriteria) returns (AutomatedIssues);
+}
